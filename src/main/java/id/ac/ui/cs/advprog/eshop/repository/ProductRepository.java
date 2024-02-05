@@ -10,10 +10,18 @@ import java.util.List;
 @Repository
 public class ProductRepository {
     private List<Product> productData = new ArrayList<>();
+    private int idCounter;
 
     public Product create(Product product) {
+        product.setProductId(idCounter++);
         productData.add(product);
         return product;
+    }
+
+    public Product edit(Product oldProduct, Product editedProduct) {
+        oldProduct.setProductName(editedProduct.getProductName());
+        oldProduct.setProductQuantity(editedProduct.getProductQuantity());
+        return oldProduct;
     }
 
     public Iterator<Product> findAll() {
