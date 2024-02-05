@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -21,6 +22,26 @@ public class ProductServiceImpl implements ProductService {
         return product;
     }
 
+    @Override
+    public Product search(int id) throws NoSuchElementException {
+        Iterator<Product> productIterator = productRepository.findAll();
+
+        while (productIterator.hasNext()) {
+            Product product = productIterator.next();
+            if(product.getProductId() == id){
+                return product;
+            }
+        }
+
+        throw new NoSuchElementException("Tidak ditemukan id" + id);
+    }
+
+    @Override
+    public Product edit(Product product){
+        Product oldProduct = search(product.getProductId());
+        Product editedProduct = productRepository.edit(oldProduct, product);
+        return editedProduct;
+    }
 
     @Override
     public List<Product> findAll() {
