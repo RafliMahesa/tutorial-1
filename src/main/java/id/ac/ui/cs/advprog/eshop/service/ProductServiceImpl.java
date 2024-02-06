@@ -23,12 +23,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product search(int id) throws NoSuchElementException {
+    public Product search(String id) throws NoSuchElementException {
         Iterator<Product> productIterator = productRepository.findAll();
 
         while (productIterator.hasNext()) {
             Product product = productIterator.next();
-            if(product.getProductId() == id){
+            if(product.getProductId().equals(id)){
                 return product;
             }
         }

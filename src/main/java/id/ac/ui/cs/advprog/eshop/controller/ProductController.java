@@ -30,7 +30,7 @@ public class ProductController {
     }
 
     @GetMapping("/edit")
-    public String editProductPage(@RequestParam(name = "id") int id, Model model){
+    public String editProductPage(@RequestParam(name = "id") String id, Model model){
         Product oldProduct = service.search(id);
         Product editedProduct = new Product();
         editedProduct.setProductId(id);
@@ -47,7 +47,7 @@ public class ProductController {
     }
 
     @GetMapping("/delete")
-    public String deleteProductPost(@RequestParam(name = "id") int id, Model model) {
+    public String deleteProductPost(@RequestParam(name = "id") String id, Model model) {
         Product searched = service.search(id);
         service.delete(searched);
         return "redirect:list";
