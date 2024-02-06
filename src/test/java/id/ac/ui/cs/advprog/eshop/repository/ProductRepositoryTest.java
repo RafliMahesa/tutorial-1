@@ -24,10 +24,10 @@ class ProductRepositoryTest {
     @Test
     void testCreateAndFind() {
         Product product = new Product();
-        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
         product.setProductName("Sampo Cap Bambang");
         product.setProductQuantity(100);
         productRepository.create(product);
+        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
 
         Iterator<Product> productIterator = productRepository.findAll();
         assertTrue(productIterator.hasNext());
@@ -46,16 +46,16 @@ class ProductRepositoryTest {
     @Test
     void testFindAllIfMoreThanOneProduct() {
         Product product1 = new Product();
-        product1.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
         product1.setProductName("Sampo Cap Bambang");
         product1.setProductQuantity(100);
         productRepository.create(product1);
-
+        product1.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        
         Product product2 = new Product();
-        product2.setProductId("a0f9de46-90b1-437d-a0bf-d0821dde9096");
         product2.setProductName("Sampo Cap Usep");
         product2.setProductQuantity(50);   
         productRepository.create(product2);
+        product2.setProductId("a0f9de46-90b1-437d-a0bf-d0821dde9096");
         
         Iterator<Product> productIterator = productRepository.findAll();
         assertTrue(productIterator.hasNext());
@@ -65,4 +65,38 @@ class ProductRepositoryTest {
         assertEquals(product2.getProductId(), savedProduct.getProductId());
         assertFalse(productIterator.hasNext());
     }
+
+    @Test
+    void testEditProduct() {
+        Product oldProduct = new Product();
+        oldProduct.setProductName("Sampo Cap Bambang");
+        oldProduct.setProductQuantity(100);
+        productRepository.create(oldProduct);
+        oldProduct.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        
+        Product editedProduct = new Product();
+        editedProduct.setProductName("Sampo Cap Mantap");
+        editedProduct.setProductQuantity(22);
+        editedProduct.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+
+        productRepository.edit(oldProduct, editedProduct);
+
+        assertEquals(editedProduct.getProductId(), oldProduct.getProductId());
+        assertEquals(editedProduct.getProductName(), oldProduct.getProductName());
+        assertEquals(editedProduct.getProductQuantity(), oldProduct.getProductQuantity());
+    }
+
+    @Test
+    void testDelete() {
+        Product product = new Product();
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+
+        productRepository.delete(product);
+        Iterator<Product> productIterator = productRepository.findAll();
+        assertFalse(productIterator.hasNext());
+    }
+
 }
