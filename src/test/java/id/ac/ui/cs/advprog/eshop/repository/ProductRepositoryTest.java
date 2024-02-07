@@ -87,6 +87,17 @@ class ProductRepositoryTest {
     }
 
     @Test
+    void testFailedEditProduct() {
+        Product product = new Product();
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+
+        assertThrows(NullPointerException.class, () -> productRepository.edit(null, product));
+    }
+
+    @Test
     void testDelete() {
         Product product = new Product();
         product.setProductName("Sampo Cap Bambang");
