@@ -99,4 +99,22 @@ class ProductRepositoryTest {
         assertFalse(productIterator.hasNext());
     }
 
+    @Test
+    void testFailedDelete() {
+        Product product = new Product();
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        
+        Product productTester = new Product();
+        productTester.setProductId("dummy");
+        product.setProductName("Sampo Cap Kw");
+        product.setProductQuantity(619);
+
+        productRepository.delete(productTester);
+        Iterator<Product> productIterator = productRepository.findAll();
+        assertTrue(productIterator.hasNext());
+    }
+
 }
