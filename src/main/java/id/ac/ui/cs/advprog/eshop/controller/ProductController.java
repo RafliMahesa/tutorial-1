@@ -48,7 +48,7 @@ public class ProductController {
     }
 
     @GetMapping("/delete")
-    public String deleteProductPost(@RequestParam(name = "id") String id, Model model) {
+    public String deleteProductGet(@RequestParam(name = "id") String id, Model model) {
         Product searched = service.search(id);
         service.delete(searched);
         return PRODUCTLISTSTRING;
