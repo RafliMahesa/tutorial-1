@@ -51,6 +51,7 @@ sonar {
   }
 }
 
+
 tasks.register<Test>("unitTest") {
 	description = "Runs unit tests."
 	group = "verification"
@@ -83,4 +84,10 @@ tasks.test {
 
 tasks.jacocoTestReport {
 	dependsOn(tasks.test)
+}
+
+tasks.jacocoTestReport {
+ reports {
+  xml.required = true
+ }
 }
