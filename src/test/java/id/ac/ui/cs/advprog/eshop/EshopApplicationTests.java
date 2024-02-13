@@ -7,18 +7,18 @@ import org.springframework.context.ApplicationContext;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-public class EshopApplicationTests {
+class EshopApplicationTests {
 
     @Autowired
     private ApplicationContext context;
 
     @Test
-    public void contextLoads() {
+    void contextLoads() {
         assertThat(context).isNotNull();
     }
 
 	@Test
-    public void main() {
+    void main() {
         EshopApplication.main(new String[]{});
     }
 }

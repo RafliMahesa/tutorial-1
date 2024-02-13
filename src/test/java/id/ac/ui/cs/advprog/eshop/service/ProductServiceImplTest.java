@@ -73,7 +73,7 @@ class ProductServiceImplTest {
         List<Product> productListService = productService.findAll();
         
         assertTrue(productListService.contains(product) && productListService.contains(product3));
-        assertTrue(productListService.get(0).getProductId().equals(product.getProductId()));
+        assertEquals(productListService.get(0).getProductId(), product.getProductId());
         assertEquals(3, productListService.size());
     }
 
@@ -94,12 +94,12 @@ class ProductServiceImplTest {
         when(productRepository.findAll()).thenReturn(productList.iterator());
 
         Product searchedProduct = productService.search("2");
-        assertTrue(searchedProduct.getProductId().equals(product2.getProductId()));
+        assertEquals(searchedProduct.getProductId(), product2.getProductId());
         assertThrows(NoSuchElementException.class, () -> productService.search("404"));
     }
 
     @Test
-    public void testEdit() {
+    void testEdit() {
         Product originalProduct = new Product();
         originalProduct.setProductName("Sampo Cap Budi");
         originalProduct.setProductQuantity(3);
@@ -125,7 +125,7 @@ class ProductServiceImplTest {
     }
 
     @Test
-    public void testDelete() {
+    void testDelete() {
         Product productToDelete = new Product();
         productToDelete.setProductName("Sampo Cap Budi");
         productToDelete.setProductQuantity(3);

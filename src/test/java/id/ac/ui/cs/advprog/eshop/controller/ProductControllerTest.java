@@ -21,7 +21,7 @@ import id.ac.ui.cs.advprog.eshop.model.Product;
 import id.ac.ui.cs.advprog.eshop.service.ProductService;
 
 @ExtendWith(MockitoExtension.class)
-public class ProductControllerTest {
+class ProductControllerTest {
     MockMvc mockMvc;
 
     @Mock

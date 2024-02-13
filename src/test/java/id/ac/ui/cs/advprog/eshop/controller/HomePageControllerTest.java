@@ -10,7 +10,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 
 @ExtendWith(MockitoExtension.class)
-public class HomePageControllerTest {
+class HomePageControllerTest {
 
     HomePageController homePageController = new HomePageController();
     MockMvc mockMvc = MockMvcBuilders.standaloneSetup(homePageController).build();
