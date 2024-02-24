@@ -53,9 +53,31 @@ Link Deployment: [Eshop](https://eshop-raflimahesa.koyeb.app/)
     b. `scorecard.yml` dan `sonarcloud.yml`:  Melakukan pengecekan cleanliness code. <br>
     <br>
     Selain beberapa workflow diatas, saya juga menggunakan Koyeb sebagai PaaS untuk deployment, yang dimana juga sudah mengimplementasikan beberapa CI/CD bawaan untuk automisasi proses setiap terdapat push atau pull request dari suatu branch. Berdasarkan penjelasan diatas, semoga implementasi CI/CD sudah bisa tercapai dengan baik.
-    
-    
 
+# Module 3
 
+## Reflection
+
+1. Explain what principles you apply to your project!
+
+    1. SRP : Saya melakukan splitting file antara `CarController` dan `ProductController` sehingga memudahkan dalam 1 file hanya terdapat 1 class controller yaitu `ProductController` serta saya membuat file baru lagi khusus `CarController`. Selain itu saya juga menerapkan SRP pada method update untuk Car. Saya mengganti for loop dalam method tersebut dengan menggunakan method findById yang sudah disediakan agar kode tidak repetitif dan mengambil pekerjaan method lain.
+    2. DIP : Pada file `CarController.java` saya melakukan DIP dalam mencegah kerusakan yang terjadi jika `CarServiceImpl` mengalami perubahan, jadinya saya menggunakan interface yaitu `CarService.java` nya daripada menggunakan kelas concrete `CarServiceImpl.java`.
+    3. ISP : Saya melakukan perpisahan antara interface `CarService` dan `ProductService` karena penggunaan servicenya yang berbeda. Jika saya menggabungkan kedua interfacenya lalu hanya mengimplementasikan yang dibutuhkan saja dapat menyebabkan `null` atau `throw unimplemented exception`.
+
+2. Explain the advantages of applying SOLID principles to your project with examples.
     
+    * Kode menjadi lebih aman dalam menghadapi perubahan
+        * Dengan menerapkan SOLID principles tentunya kode akan lebih modular karena saya menerapkan SRP dan OCP sehingga setiap komponen dari kode saya memilki tujuan masing-masing yang jelas dan tidak merusak kode lain ketika mengalami perubahan.
+    * Kode menjadi lebih maintainable 
+        * Maintainability dalam pengembangan sebuah kode sangatlah penting karena kode yang maintainability tentu lebih mudah dipahami sehingga itu akan memudahkan saya jika ingin melakukan pemeliharaan dan perbaikan dalam waktu yang cukup jauh dari awal pembuatan kode. Tentunya ini juga tidak lepas dari penjelasan poin pertama bahwa kode menerapkan SOLID principles tujuan dari masing-masing komponennya sudah dipisah sehingga ini juga bisa mempercepat jika terdapat bug/error saat proses pemeliharaan dan perbaikan.
+    * Kode yang lebih fleksibel dan reusable
+        * Dengan menerapkan SOLID principles tentunya kode juga akan lebih fleksibel dan mudah disesuaikan dengan perubahan karena saya menerapkan LSP dan DIP karena kode saya berfokus pada abstraksi dan mengurangi ketergantungan langsung antar komponen.
 
+3. Explain the disadvantages of not applying SOLID principles to your project with examples. 
+    
+    * Rumitnya kode akan membuat pekerjaan terhambat
+        * Saat saya tidak menerapkan SOLID principles, kode cenderung menjadi sulit dipahami dan berantakan. Setiap fungsi atau metode mungkin memiliki tanggung jawab yang terlalu banyak, dan ini dapat membuat pekerjaan kita menjadi lebih sulit dan lambat. Bayangkan mencoba mengubah atau menambahkan fitur pada suatu kode yang tidak terstruktur dengan baik - pasti memakan waktu dan pikiran ekstra.
+    * Proses modifikasi yang sulit
+        * Kode yang tidak menerapkan SOLID principles bisa mempunyai kendala yang besar ketika melakukan modifikasi atau pembuatan fitur baru. Misalnya, jika saya mengubah sebuah bagian kecil dari suatu bagian kode, kita menjadi khawatir karena bagian kecil tersebut berdampak pada banyak kode lain. 
+    * Terlalu berkaitnya satu kode dengan kode yang lain dapat menyebabkan kerusakan pada kode
+        * Sesuai dengan Dependency Inversion, misal jika saya tidak mengikuti prinsip ini dan bergantung langsung pada implementasi spesifik, seperti CarServiceImpl, maka ketika ada perubahan dalam CarServiceImpl, misalnya, perubahan metode atau struktur kelas, itu bisa merusak file CarController. Dengan menerapkan prinsip DIP, dengan menggunakan interface CarService, saya bisa melindungi CarController dari perubahan di CarServiceImpl, meminimalkan risiko potensial kerusakan dan memudahkan perubahan di masa mendatang.
