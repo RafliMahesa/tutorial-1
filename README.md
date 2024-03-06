@@ -81,3 +81,15 @@ Link Deployment: [Eshop](https://eshop-raflimahesa.koyeb.app/)
         * Kode yang tidak menerapkan SOLID principles bisa mempunyai kendala yang besar ketika melakukan modifikasi atau pembuatan fitur baru. Misalnya, jika saya mengubah sebuah bagian kecil dari suatu bagian kode, kita menjadi khawatir karena bagian kecil tersebut berdampak pada banyak kode lain. 
     * Terlalu berkaitnya satu kode dengan kode yang lain dapat menyebabkan kerusakan pada kode
         * Sesuai dengan Dependency Inversion, misal jika saya tidak mengikuti prinsip ini dan bergantung langsung pada implementasi spesifik, seperti CarServiceImpl, maka ketika ada perubahan dalam CarServiceImpl, misalnya, perubahan metode atau struktur kelas, itu bisa merusak file CarController. Dengan menerapkan prinsip DIP, dengan menggunakan interface CarService, saya bisa melindungi CarController dari perubahan di CarServiceImpl, meminimalkan risiko potensial kerusakan dan memudahkan perubahan di masa mendatang.
+
+# Module 4
+
+## Reflection
+
+1. Reflect based on Percival (2017) proposed self-reflective questions (in “Principles and Best Practice of Testing” submodule, chapter “Evaluating Your Testing Objectives”), whether this TDD flow is useful enough for you or not. If not, explain things that you need to do next time you make more tests.
+
+    Menurut saya, prosedur TDD sangat *useful* bagi saya karena memberi alur yang baik dalam pengerjaannya. Pada prosedur TDD, akan dibagi menjadi tiga bagian yaitu [RED], [GREEN], dan [REFACTOR]. Tentu, ini akan membantu saya dalam mengimplementasikan class karena sebelum membuat suatu class sudah di *handle* semua kasus baik yang *happy* maupun *unhappy*. Jadi, TDD sangat berguna dalam tahap pengembangan untuk memastikan kode yang lebih aman serta memudahkan proses *refactor*.
+
+2. You have created unit tests in Tutorial. Now reflect whether your tests have successfully followed F.I.R.S.T. principle or not. If not, explain things that you need to do the next time you create more tests.
+
+    Pada unit test yang sudah saya buat pada tutorial ini, test sudah mencukupi F.I.R.S.T principle karena algoritma yang dibuat sudah dikhususkan pada suatu method dan tidak memcampuri method lain. Pada service test, saya juga sudah menggunakan mock sehingga tidak akan mempengaruhi kode yang aslinya. Hasil dari setiap test juga dibuat assertionnya agar semua kemungkinan dapat di cek dengan cukup baik. Tentunya setiap test juga dibuat semaksimal mungkin mengcover semua kemungkinan kasus "happy" dan "unhappy" dari method yang diperiksa.
